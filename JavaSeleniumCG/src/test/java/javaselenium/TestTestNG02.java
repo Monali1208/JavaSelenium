@@ -12,7 +12,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 public class TestTestNG02 {
 	
 	@Test
-	public void googleSearch() {
+	public void googleSearch() throws InterruptedException {
 		WebDriver driver;
 		WebDriverManager.chromedriver().setup();
 		
@@ -22,6 +22,16 @@ public class TestTestNG02 {
 	    
 		searchBox.sendKeys("Google text");
 		searchBox.sendKeys(Keys.ENTER);
+		String currentUrl = driver.getCurrentUrl();
+		System.out.println("current url is " + currentUrl);
+		System.out.println("The Title is " + driver.getTitle());
+		driver.navigate().to("https://demoqa.com/");
+		driver.navigate().back();
+		Thread.sleep(5000);
+		driver.navigate().forward();
+		Thread.sleep(5000);
+		driver.navigate().refresh();
+		driver.quit();
 		driver.close();
 
 	}
